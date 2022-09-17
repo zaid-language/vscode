@@ -1,0 +1,276 @@
+{
+	"name": "Zaid",
+	"scopeName": "source.zaid",
+	"fileTypes": ["zaid"],
+
+	"patterns": [
+		{ "include": "#code" }
+	],
+
+	"repository": {
+		"code": {
+			"patterns": [
+				{ "include": "#assignment" },
+				{ "include": "#block" },
+				{ "include": "#blockComment" },
+				{ "include": "#class" },
+				{ "include": "#comment" },
+				{ "include": "#constant" },
+				{ "include": "#function" },
+				{ "include": "#keyword" },
+				{ "include": "#library" },
+				{ "include": "#puncuation" },
+				{ "include": "#string" },
+				{ "include": "#variable" }
+			]
+		},
+
+		"assignment": {
+			"name": "keyword.operator.assignment.zaid",
+			"match": "(=)"
+		},
+
+		"block": {
+			"begin": "{",
+			"beginCaptures": {
+				"0": {
+					"name": "puncuation.section.block.begin.zaid"
+				}
+			},
+			"end": "}",
+			"endCaptures": {
+				"0": {
+					"name": "puncuation.section.block.end.zaid"
+				}
+			},
+			"name": "meta.block.zaid",
+			"patterns": [
+				{ "include": "#code" }
+			]
+		},
+
+		"blockComment": {
+			"name": "comment.block.zaid",
+			"begin": "/\\*",
+			"end": "\\*/",
+			"patterns": [
+				{ "include": "#blockComment" }
+			]
+		},
+
+		"class": {
+			"name": "meta.class",
+			"begin": "(?:\\b(foreign)\\s+)?(\\bclass)\\s+(\\w+)\\s+(?:(\\bis)\\s+(\\w+))?",
+            "beginCaptures": {
+                "1": { "name": "storage.modifier.zaid" },
+                "2": { "name": "storage.modifier.zaid" },
+                "3": { "name": "entity.name.class.zaid" },
+                "4": { "name": "storage.modifier.zaid" },
+                "5": { "name": "entity.name.class.zaid" }
+            },
+			"end": "(?=})",
+            "endCaptures": {
+                "0": { "name": "punctuation.section.class.end.zaid" }
+            },
+			"patterns": [
+				{
+					"name": "meta.class.body.zaid",
+					"begin": "{",
+					"beginCaptures": {
+                        "0": { "name": "punctuation.section.class.begin.zaid" }
+                    },
+					"patterns": [
+						{ "include": "#comment" },
+						{ "include": "#blockComment" },
+						{ "include": "#function" }
+					],
+					"end": "(?=})"
+				}
+			]
+		},
+
+		"comment": {
+			"name": "comment.line.zaid",
+			"match": "//.*"
+		},
+
+		"constant": {
+			"patterns": [
+				{
+					"name": "constant.language.null.zaid",
+					"match": "\\b(null)\\b"
+				},
+				{
+					"name": "constant.language.boolean.zaid",
+					"match": "\\b(true|false)\\b"
+				},
+				{
+					"name": "constant.numeric.zaid",
+					"match": "\\b(0x[0-9a-fA-F]*|[0-9]+(\\.?[0-9]*)?(e(\\+|-)?[0-9]+)?)\\b"
+				},
+				{
+					"name": "constant.numeric.hexadecimal.zaid",
+					"match": "0x[A-Fa-f0-9]+"
+				}
+			]
+		},
+
+		"function": {
+			"patterns": [
+				{
+					"name": "keyword.control.zaid",
+					"match": "\\b(?:function)\\b"
+				},
+				{
+					"name": "meta.function.zaid",
+					"match": "(?:[.]|\\b)(\\w+)\\(",
+					"captures": {
+						"1": { "name": "entity.name.function.zaid" }
+					}
+				},
+				{
+					"begin": "^(\\bfunction\\b)\\s(\\w+)",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.function.zaid"
+						},
+						"2": {
+							"name": "entity.name.function.zaid"
+						}
+					},
+					"end": "\\{"
+				}
+			]
+		},
+
+		"keyword": {
+			"patterns": [
+				{
+					"name": "keyword.control.zaid",
+					"match": "\\b(?:break|continue|else|for|if|import|from|in|return|while)\\b"
+				},
+				{
+					"name": "keyword.operator.logical.zaid",
+					"match": "\\b(!|and|or)\\b"
+				},
+				{
+					"name": "keyword.operator.range.zaid",
+					"match": "(\\.\\.)"
+				},
+				{
+					"name": "keyword.operator.arithmetic.zaid",
+					"match": "(\\-|\\+|\\*|\/|%)"
+				},
+				{
+					"name": "keyword.operator.comparison.zaid",
+					"match": "(==|!=|<=|>=|<|>)"
+				},
+				{
+					"name": "keyword.operator.assignment.zaid",
+					"match": "(=)"
+				}
+			]
+		},
+
+		"library": {
+			"patterns": [
+				{
+					"name": "support.function.zaid",
+					"match": "\\b(printftw)\\b"
+				}
+			]
+		},
+
+		"method": {
+			"name": "meta.method.zaid",
+			"begin": "(?:\\b(static)\\s+)?(\\w+=|\\w+|\\+|-|\\*|\\/|%|<=?|>=?|==|!=?|&|\\||~)",
+			"beginCaptures": {
+                "1": { "name": "storage.modifier.zaid" },
+                "2": { "name": "entity.name.function.zaid" }
+            },
+			"end": "}",
+			"patterns": [
+				{
+                    "name": "meta.method.identifier.zaid",
+                    "begin": "\\(",
+                    "end": "\\)",
+                    "patterns": [
+                        {
+                            "name": "variable.parameter.function.zaid",
+                            "match": "\\w+"
+                        }
+                    ]
+                },
+				{
+					"name": "meta.method.body.zaid",
+					"begin": "{",
+					"end": "(?=})",
+					"patterns": [
+						{ "include": "#code" }
+					]
+				}
+			]
+		},
+
+		"puncutation": {
+			"patterns": [
+				{
+					"name": "puncuation.other.comma.zaid",
+					"match": ","
+				},
+				{
+					"name": "puncuation.other.period.zaid",
+					"match": "\\.(?!\\.)"
+				},
+				{
+					"name": "punctuation.other.colon.zaid",
+					"match": ":(?!=)"
+				}
+			]
+		},
+
+		"string": {
+			"patterns": [
+				{
+					"name": "string.quoted.double.zaid",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [
+						{ "include": "#stringEscapes" }
+					]
+				},
+				{
+					"name": "string.quoted.single.zaid",
+					"begin": "'",
+					"end": "'"
+				}
+			]
+		},
+
+		"stringEscapes": {
+			"patterns": [
+				{
+					"name": "constant.character.escape.zaid",
+					"match": "\\\\(?:[0\"\\abfnrtv]|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{4})"
+				},
+				{
+					"name": "invalid.illegal.unknown-escape.zaid",
+					"match": "\\\\(?:x[0-9A-Fa-f]{0,1}|u[0-9A-Fa-f]{0,3}|U[0-9A-Fa-f]{0,7}|.)"
+				},
+				{
+					"name": "constant.character.interpolation.zaid",
+					"match": "%\\((.*?)\\)"
+				}
+			]
+		},
+
+		"variable": {
+			"patterns": [
+				{
+					"name": "variable.language.zaid",
+					"match": "\\b(this|super)\\b"
+				}
+			]
+		}
+	}
+}

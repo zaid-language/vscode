@@ -1,0 +1,50 @@
+{
+    "class": {
+        "prefix": "class",
+        "body": "class $1 {\n    $2\n}",
+        "description": "Class definition",
+        "scope": "source.zaid"
+    },
+    "function": {
+        "prefix": "function",
+        "body": "function($1) {\n    $2\n}",
+        "description": "function definition",
+        "scope": "source.zaid"
+    },
+    "else": {
+        "prefix": "else",
+        "body": "else {\n    $1\n}",
+        "description": "else clause",
+        "scope": "source.zaid"
+    },
+    "for": {
+        "prefix": "for",
+        "body": "for ($1; $2; $3) {\n    $4\n}",
+        "description": "for statement",
+        "scope": "source.zaid"
+    },
+    "if": {
+        "prefix": "if",
+        "body": "if ($1) {\n    $2\n}",
+        "description": "if statement",
+        "scope": "source.zaid"
+    },
+    "while": {
+        "prefix": "while",
+        "body": "while ($1) {\n    $2\n}",
+        "desciption": "while statement",
+        "scope": "source.zaid"
+    },
+    "printftw": {
+        "prefix": "printftw",
+        "body": "printftw($1)",
+        "description": "Print a string or object with a trailing newline.",
+        "scope": "source.zaid"
+    },
+    "write": {
+        "prefix": "write",
+        "body": "write($1)",
+        "description": "Print a string or object without a trailing newline.",
+        "scope": "source.zaid"
+    }
+}

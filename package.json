@@ -1,0 +1,48 @@
+{
+    "name": "zaid-language",
+    "displayName": "Zaid Language",
+    "icon": "icon.png",
+    "description": "Zaid extension for Visual Studio Code.",
+    "publisher": "ZaidLanguage",
+    "version": "0.1.0",
+    "license": "MIT",
+    "keywords": ["zaid"],
+    "private": true,
+    "bugs": {
+        "url": "https://github.com/zaid-language/vscode/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/zaid-language/vscode.git"
+    },
+    "engines": {
+        "vscode": "^1.44.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "zaid",
+                "path": "./snippets/zaid.json"
+            }
+        ],
+        "languages": [{
+            "id": "zaid",
+            "aliases": ["Zaid", "zaid"],
+            "extensions": [".zaid"],
+            "configuration": "./zaid.configuration.json",
+            "icon": {
+                "light": "./icons/zaid-light.png",
+                "dark": "./icons/zaid-dark.png"
+            }
+        }],
+        "grammars": [{
+            "language": "zaid",
+            "scopeName": "source.zaid",
+            "path": "./syntaxes/zaid.tmLanguage.json"
+        }]
+    }
+}
